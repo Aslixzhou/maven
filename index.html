@@ -1,0 +1,537 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<title>maven</title><link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; word-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 40px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:first-child { margin-top: -20px; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; }
+button, input, select, textarea { color: inherit; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; font-size: inherit; line-height: inherit; font-family: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 2; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px !important; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-diagram-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  html.blink-to-pdf { font-size: 13px; }
+  .typora-export #write { padding-left: 32px; padding-right: 32px; padding-bottom: 0px; break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  @page { margin: 20mm 0px; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.md-inline-math .MathJax_SVG .noError { display: none !important; }
+.html-for-mac .inline-math-svg .MathJax_SVG { vertical-align: 0.2px; }
+.md-math-block .MathJax_SVG_Display { text-align: center; margin: 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; overflow-y: hidden; display: block !important; }
+.MathJax_SVG_Display, .md-inline-math .MathJax_SVG_Display { width: auto; margin: inherit; display: inline-block !important; }
+.MathJax_SVG .MJX-monospace { font-family: var(--monospace); }
+.MathJax_SVG .MJX-sans-serif { font-family: sans-serif; }
+.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; zoom: 90%; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; }
+.MathJax_SVG * { transition: none; }
+.MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="mermaid"] svg, [lang="flow"] svg { max-width: 100%; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+
+
+.CodeMirror { height: auto; }
+.CodeMirror.cm-s-inner { background: inherit; }
+.CodeMirror-scroll { overflow-y: hidden; overflow-x: auto; z-index: 3; }
+.CodeMirror-gutter-filler, .CodeMirror-scrollbar-filler { background-color: rgb(255, 255, 255); }
+.CodeMirror-gutters { border-right: 1px solid rgb(221, 221, 221); background: inherit; white-space: nowrap; }
+.CodeMirror-linenumber { padding: 0px 3px 0px 5px; text-align: right; color: rgb(153, 153, 153); }
+.cm-s-inner .cm-keyword { color: rgb(119, 0, 136); }
+.cm-s-inner .cm-atom, .cm-s-inner.cm-atom { color: rgb(34, 17, 153); }
+.cm-s-inner .cm-number { color: rgb(17, 102, 68); }
+.cm-s-inner .cm-def { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-variable { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-variable-2 { color: rgb(0, 85, 170); }
+.cm-s-inner .cm-variable-3 { color: rgb(0, 136, 85); }
+.cm-s-inner .cm-string { color: rgb(170, 17, 17); }
+.cm-s-inner .cm-property { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-operator { color: rgb(152, 26, 26); }
+.cm-s-inner .cm-comment, .cm-s-inner.cm-comment { color: rgb(170, 85, 0); }
+.cm-s-inner .cm-string-2 { color: rgb(255, 85, 0); }
+.cm-s-inner .cm-meta { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-qualifier { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-builtin { color: rgb(51, 0, 170); }
+.cm-s-inner .cm-bracket { color: rgb(153, 153, 119); }
+.cm-s-inner .cm-tag { color: rgb(17, 119, 0); }
+.cm-s-inner .cm-attribute { color: rgb(0, 0, 204); }
+.cm-s-inner .cm-header, .cm-s-inner.cm-header { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-quote, .cm-s-inner.cm-quote { color: rgb(0, 153, 0); }
+.cm-s-inner .cm-hr, .cm-s-inner.cm-hr { color: rgb(153, 153, 153); }
+.cm-s-inner .cm-link, .cm-s-inner.cm-link { color: rgb(0, 0, 204); }
+.cm-negative { color: rgb(221, 68, 68); }
+.cm-positive { color: rgb(34, 153, 34); }
+.cm-header, .cm-strong { font-weight: 700; }
+.cm-del { text-decoration: line-through; }
+.cm-em { font-style: italic; }
+.cm-link { text-decoration: underline; }
+.cm-error { color: red; }
+.cm-invalidchar { color: red; }
+.cm-constant { color: rgb(38, 139, 210); }
+.cm-defined { color: rgb(181, 137, 0); }
+div.CodeMirror span.CodeMirror-matchingbracket { color: rgb(0, 255, 0); }
+div.CodeMirror span.CodeMirror-nonmatchingbracket { color: rgb(255, 34, 34); }
+.cm-s-inner .CodeMirror-activeline-background { background: inherit; }
+.CodeMirror { position: relative; overflow: hidden; }
+.CodeMirror-scroll { height: 100%; outline: 0px; position: relative; box-sizing: content-box; background: inherit; }
+.CodeMirror-sizer { position: relative; }
+.CodeMirror-gutter-filler, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-vscrollbar { position: absolute; z-index: 6; display: none; }
+.CodeMirror-vscrollbar { right: 0px; top: 0px; overflow: hidden; }
+.CodeMirror-hscrollbar { bottom: 0px; left: 0px; overflow: hidden; }
+.CodeMirror-scrollbar-filler { right: 0px; bottom: 0px; }
+.CodeMirror-gutter-filler { left: 0px; bottom: 0px; }
+.CodeMirror-gutters { position: absolute; left: 0px; top: 0px; padding-bottom: 30px; z-index: 3; }
+.CodeMirror-gutter { white-space: normal; height: 100%; box-sizing: content-box; padding-bottom: 30px; margin-bottom: -32px; display: inline-block; }
+.CodeMirror-gutter-wrapper { position: absolute; z-index: 4; background: 0px 0px !important; border: none !important; }
+.CodeMirror-gutter-background { position: absolute; top: 0px; bottom: 0px; z-index: 4; }
+.CodeMirror-gutter-elt { position: absolute; cursor: default; z-index: 4; }
+.CodeMirror-lines { cursor: text; }
+.CodeMirror pre { border-radius: 0px; border-width: 0px; background: 0px 0px; font-family: inherit; font-size: inherit; margin: 0px; white-space: pre; word-wrap: normal; color: inherit; z-index: 2; position: relative; overflow: visible; }
+.CodeMirror-wrap pre { word-wrap: break-word; white-space: pre-wrap; word-break: normal; }
+.CodeMirror-code pre { border-right: 30px solid transparent; width: fit-content; }
+.CodeMirror-wrap .CodeMirror-code pre { border-right: none; width: auto; }
+.CodeMirror-linebackground { position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px; z-index: 0; }
+.CodeMirror-linewidget { position: relative; z-index: 2; overflow: auto; }
+.CodeMirror-wrap .CodeMirror-scroll { overflow-x: hidden; }
+.CodeMirror-measure { position: absolute; width: 100%; height: 0px; overflow: hidden; visibility: hidden; }
+.CodeMirror-measure pre { position: static; }
+.CodeMirror div.CodeMirror-cursor { position: absolute; visibility: hidden; border-right: none; width: 0px; }
+.CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+.CodeMirror-focused div.CodeMirror-cursor { visibility: inherit; }
+.cm-searching { background: rgba(255, 255, 0, 0.4); }
+@media print {
+  .CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+}
+
+
+:root { --side-bar-bg-color: #fafafa; --control-text-color: #777; }
+html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+body { font-family: "Open Sans", "Clear Sans", "Helvetica Neue", Helvetica, Arial, "Segoe UI Emoji", sans-serif; color: rgb(0, 64, 80); line-height: 1.6; }
+#write { max-width: 860px; margin: 0px auto; padding: 30px 30px 100px; }
+@media only screen and (min-width: 1400px) {
+  #write { max-width: 1024px; }
+}
+@media only screen and (min-width: 1800px) {
+  #write { max-width: 1200px; }
+}
+#write > ul:first-child, #write > ol:first-child { margin-top: 30px; }
+a { color: rgb(65, 131, 196); }
+h1, h2, h3, h4, h5, h6 { position: relative; margin-top: 1rem; margin-bottom: 1rem; font-weight: bold; line-height: 1.4; cursor: text; }
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor { text-decoration: none; }
+h1 tt, h1 code { font-size: inherit; }
+h2 tt, h2 code { font-size: inherit; }
+h3 tt, h3 code { font-size: inherit; }
+h4 tt, h4 code { font-size: inherit; }
+h5 tt, h5 code { font-size: inherit; }
+h6 tt, h6 code { font-size: inherit; }
+h1 { font-size: 2.25em; line-height: 1.2; border-bottom: 1px solid rgb(238, 238, 238); }
+h2 { font-size: 1.75em; line-height: 1.225; border-bottom: 1px solid rgb(238, 238, 238); }
+h3 { font-size: 1.5em; line-height: 1.43; }
+h4 { font-size: 1.25em; }
+h5 { font-size: 1em; }
+h6 { font-size: 1em; color: rgb(119, 119, 119); }
+p, blockquote, ul, ol, dl, table { margin: 0.8em 0px; }
+li > ol, li > ul { margin: 0px; }
+hr { height: 2px; padding: 0px; margin: 16px 0px; background-color: rgb(231, 231, 231); border: 0px none; overflow: hidden; box-sizing: content-box; }
+li p.first { display: inline-block; }
+ul, ol { padding-left: 30px; }
+ul:first-child, ol:first-child { margin-top: 0px; }
+ul:last-child, ol:last-child { margin-bottom: 0px; }
+blockquote { border-left: 5px solid rgb(66, 185, 131); padding: 8px 15px; color: rgb(33, 93, 66); background-color: rgb(243, 245, 247); }
+blockquote blockquote { padding-right: 0px; }
+table { padding: 0px; word-break: initial; }
+table tr { border: 1px solid rgb(223, 226, 229); margin: 0px; padding: 0px; }
+table tr:nth-child(2n), thead { background-color: rgb(248, 248, 248); }
+table th { font-weight: bold; border-width: 1px 1px 0px; border-top-style: solid; border-right-style: solid; border-left-style: solid; border-top-color: rgb(223, 226, 229); border-right-color: rgb(223, 226, 229); border-left-color: rgb(223, 226, 229); border-image: initial; border-bottom-style: initial; border-bottom-color: initial; margin: 0px; padding: 6px 13px; }
+table td { border: 1px solid rgb(223, 226, 229); margin: 0px; padding: 6px 13px; }
+table th:first-child, table td:first-child { margin-top: 0px; }
+table th:last-child, table td:last-child { margin-bottom: 0px; }
+.CodeMirror-lines { padding-left: 4px; }
+.code-tooltip { box-shadow: rgba(0, 28, 36, 0.3) 0px 1px 1px 0px; border-top: 1px solid rgb(238, 242, 242); }
+.md-fences, code, tt { border: 1px solid rgb(231, 234, 237); background-color: rgb(248, 248, 248); border-radius: 3px; padding: 2px 4px 0px; font-size: 0.9em; }
+code { background-color: rgb(243, 244, 244); padding: 2px; color: rgb(209, 37, 115); }
+.md-fences { margin-bottom: 15px; margin-top: 15px; padding-top: 8px; padding-bottom: 6px; }
+.md-task-list-item > input { margin-left: -1.3em; }
+@media print {
+  html { font-size: 13px; }
+  table, pre { break-inside: avoid; }
+  pre { word-wrap: break-word; }
+}
+.md-fences { background-color: rgb(248, 248, 248); }
+#write pre.md-meta-block { padding: 1rem; font-size: 85%; line-height: 1.45; background-color: rgb(247, 247, 247); border: 0px; border-radius: 3px; color: rgb(119, 119, 119); margin-top: 0px !important; }
+.mathjax-block > .code-tooltip { bottom: 0.375rem; }
+.md-mathjax-midline { background: rgb(250, 250, 250); }
+#write > h3.md-focus::before { left: -1.5625rem; top: 0.375rem; }
+#write > h4.md-focus::before { left: -1.5625rem; top: 0.285714rem; }
+#write > h5.md-focus::before { left: -1.5625rem; top: 0.285714rem; }
+#write > h6.md-focus::before { left: -1.5625rem; top: 0.285714rem; }
+.md-image > .md-meta { border-radius: 3px; padding: 2px 0px 0px 4px; font-size: 0.9em; color: inherit; }
+.md-tag { color: rgb(167, 167, 167); opacity: 1; }
+.md-toc { margin-top: 20px; padding-bottom: 20px; }
+.sidebar-tabs { border-bottom: none; }
+#typora-quick-open { border: 1px solid rgb(221, 221, 221); background-color: rgb(248, 248, 248); }
+#typora-quick-open-item { background-color: rgb(250, 250, 250); border-color: rgb(254, 254, 254) rgb(229, 229, 229) rgb(229, 229, 229) rgb(238, 238, 238); border-style: solid; border-width: 1px; }
+.on-focus-mode blockquote { border-left-color: rgba(85, 85, 85, 0.12); }
+header, .context-menu, .megamenu-content, footer { font-family: "Segoe UI", Arial, sans-serif; }
+.file-node-content:hover .file-node-icon, .file-node-content:hover .file-node-open-state { visibility: visible; }
+.mac-seamless-mode #typora-sidebar { background-color: var(--side-bar-bg-color); }
+.md-lang { color: rgb(180, 101, 77); }
+#md-notification .btn { border: 0px; }
+.dropdown-menu .divider { border-color: rgb(229, 229, 229); opacity: 0.4; }
+.ty-preferences .window-content { background-color: rgb(250, 250, 250); }
+.ty-preferences .nav-group-item.active { color: white; background: rgb(153, 153, 153); }
+.menu-item-container a.menu-style-btn { background-color: rgb(245, 248, 250); background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0)); }
+#write mark { background: transparent; color: rgb(216, 105, 105); font-weight: bold; }
+p .md-image:only-child { width: auto; text-align: left; }
+
+
+.cm-s-inner { background-color: rgb(38, 50, 56); color: rgb(233, 237, 237); }
+.cm-s-inner .CodeMirror-gutters { background: rgb(38, 50, 56); color: rgb(83, 127, 126); border: none; }
+.cm-s-inner .CodeMirror-guttermarker, .cm-s-inner .CodeMirror-guttermarker-subtle, .cm-s-inner .CodeMirror-linenumber { color: rgb(83, 127, 126); }
+.cm-s-inner .CodeMirror-cursor { border-left: 1px solid rgb(248, 248, 240); }
+.cm-s-inner div.CodeMirror-selected { background: rgba(255, 255, 255, 0.15); }
+.cm-s-inner.CodeMirror-focused div.CodeMirror-selected { background: rgba(255, 255, 255, 0.1); }
+.cm-s-inner .CodeMirror-line::selection, .cm-s-inner .CodeMirror-line > span::selection, .cm-s-inner .CodeMirror-line > span > span::selection { background: rgba(255, 255, 255, 0.1); }
+.cm-s-inner .CodeMirror-activeline-background { background: rgba(0, 0, 0, 0); }
+.cm-s-inner .cm-keyword { color: rgb(199, 146, 234); }
+.cm-s-inner .cm-operator { color: rgb(233, 237, 237); }
+.cm-s-inner .cm-variable-2 { color: rgb(128, 203, 196); }
+.cm-s-inner .cm-variable-3 { color: rgb(158, 255, 255); }
+.cm-s-inner .cm-builtin { color: rgb(222, 203, 107); }
+.cm-s-inner .cm-atom { color: rgb(247, 118, 105); }
+.cm-s-inner .cm-number { color: rgb(247, 118, 105); }
+.cm-s-inner .cm-def { color: rgb(233, 237, 237); }
+.cm-s-inner .cm-string { color: rgb(195, 232, 141); }
+.cm-s-inner .cm-string-2 { color: rgb(128, 203, 196); }
+.cm-s-inner .cm-comment { color: rgb(84, 110, 122); }
+.cm-s-inner .cm-variable { color: rgb(158, 255, 255); }
+.cm-s-inner .cm-tag { color: rgb(128, 203, 196); }
+.cm-s-inner .cm-meta { color: rgb(128, 203, 196); }
+.cm-s-inner .cm-attribute { color: rgb(255, 203, 107); }
+.cm-s-inner .cm-property { color: rgb(128, 203, 174); }
+.cm-s-inner .cm-qualifier { color: rgb(222, 203, 107); }
+.cm-s-inner .cm-variable-3 { color: rgb(222, 203, 107); }
+.cm-s-inner .cm-tag { color: rgb(255, 83, 112); }
+.cm-s-inner .cm-error { color: rgb(255, 255, 255); background-color: rgb(236, 95, 103); }
+.cm-s-inner .CodeMirror-matchingbracket { text-decoration: underline; color: white !important; }
+.md-fences { background-color: rgb(38, 50, 56); color: rgb(233, 237, 237); border: none; }
+.md-fences .code-tooltip { background-color: rgb(38, 50, 56); }
+
+
+
+
+</style>
+</head>
+<body class='typora-export os-windows' >
+<div  id='write'  class = 'is-node first-line-indent'><div class='md-toc' mdtype='toc'><p class="md-toc-content"><span class="md-toc-item md-toc-h1" data-ref="n2"><a class="md-toc-inner" href="#header-n2">第一章 Maven简介</a></span><span class="md-toc-item md-toc-h2" data-ref="n3"><a class="md-toc-inner" href="#header-n3">1.1 软件开发中的阶段</a></span><span class="md-toc-item md-toc-h2" data-ref="n10"><a class="md-toc-inner" href="#header-n10">1.2 Maven能做什么</a></span><span class="md-toc-item md-toc-h2" data-ref="n15"><a class="md-toc-inner" href="#header-n15">1.3 没有使用maven怎么管理依赖</a></span><span class="md-toc-item md-toc-h2" data-ref="n20"><a class="md-toc-inner" href="#header-n20">1.4 什么是maven</a></span><span class="md-toc-item md-toc-h2" data-ref="n24"><a class="md-toc-inner" href="#header-n24">1.5 maven中的概念</a></span><span class="md-toc-item md-toc-h2" data-ref="n35"><a class="md-toc-inner" href="#header-n35">1.6 maven工具的获取和安装</a></span><span class="md-toc-item md-toc-h2" data-ref="n66"><a class="md-toc-inner" href="#header-n66">1.7 第一个maven工程</a></span><span class="md-toc-item md-toc-h1" data-ref="n69"><a class="md-toc-inner" href="#header-n69">第二章 Maven的核心概念</a></span><span class="md-toc-item md-toc-h2" data-ref="n70"><a class="md-toc-inner" href="#header-n70">2.1 约定的目录结构</a></span><span class="md-toc-item md-toc-h2" data-ref="n76"><a class="md-toc-inner" href="#header-n76">2.2 POM </a></span><span class="md-toc-item md-toc-h2" data-ref="n80"><a class="md-toc-inner" href="#header-n80">2.3 坐标</a></span><span class="md-toc-item md-toc-h2" data-ref="n89"><a class="md-toc-inner" href="#header-n89">2.4 依赖-dependency</a></span><span class="md-toc-item md-toc-h2" data-ref="n94"><a class="md-toc-inner" href="#header-n94">2.5 仓库</a></span><span class="md-toc-item md-toc-h2" data-ref="n123"><a class="md-toc-inner" href="#header-n123">2.6 继承</a></span><span class="md-toc-item md-toc-h2" data-ref="n125"><a class="md-toc-inner" href="#header-n125">2.7 聚合</a></span><span class="md-toc-item md-toc-h2" data-ref="n127"><a class="md-toc-inner" href="#header-n127">2.8 maven的生命周期，插件和命令</a></span><span class="md-toc-item md-toc-h2" data-ref="n159"><a class="md-toc-inner" href="#header-n159">2.9 自定义配置插件</a></span><span class="md-toc-item md-toc-h1" data-ref="n162"><a class="md-toc-inner" href="#header-n162">第三章 Maven和idea的集成</a></span><span class="md-toc-item md-toc-h2" data-ref="n163"><a class="md-toc-inner" href="#header-n163">3.1 idea中集成maven</a></span><span class="md-toc-item md-toc-h2" data-ref="n174"><a class="md-toc-inner" href="#header-n174">3.2 创建基于maven的普通java项目</a></span><span class="md-toc-item md-toc-h2" data-ref="n177"><a class="md-toc-inner" href="#header-n177">3.3 创建web项目</a></span><span class="md-toc-item md-toc-h2" data-ref="n179"><a class="md-toc-inner" href="#header-n179">3.4 导入module到idea</a></span><span class="md-toc-item md-toc-h1" data-ref="n183"><a class="md-toc-inner" href="#header-n183">第四章 依赖管理</a></span><span class="md-toc-item md-toc-h1" data-ref="n188"><a class="md-toc-inner" href="#header-n188">第五章 常用设置</a></span><span class="md-toc-item md-toc-h1" data-ref="n206"><a class="md-toc-inner" href="#header-n206">第六章 其他</a></span><span class="md-toc-item md-toc-h2" data-ref="n207"><a class="md-toc-inner" href="#header-n207">6.1 镜像</a></span><span class="md-toc-item md-toc-h1" data-ref="n211"><a class="md-toc-inner" href="#header-n211">第七章 多模块管理</a></span><span class="md-toc-item md-toc-h2" data-ref="n214"><a class="md-toc-inner" href="#header-n214">7.1 创建父工程</a></span><span class="md-toc-item md-toc-h2" data-ref="n226"><a class="md-toc-inner" href="#header-n226">7.2 创建子模块</a></span><span class="md-toc-item md-toc-h2" data-ref="n234"><a class="md-toc-inner" href="#header-n234">7.3 修改子工程为父工程</a></span><span class="md-toc-item md-toc-h2" data-ref="n237"><a class="md-toc-inner" href="#header-n237">7.4 父工程加强管理子模块的所有依赖</a></span><span class="md-toc-item md-toc-h2" data-ref="n239"><a class="md-toc-inner" href="#header-n239">7.5 子工程声明式继承父工程依赖</a></span><span class="md-toc-item md-toc-h2" data-ref="n241"><a class="md-toc-inner" href="#header-n241">7.6 父工程管理依赖的版本号</a></span><span class="md-toc-item md-toc-h2" data-ref="n243"><a class="md-toc-inner" href="#header-n243">7.7 多模块管理方式二</a></span><span class="md-toc-item md-toc-h2" data-ref="n255"><a class="md-toc-inner" href="#header-n255">7.9 多模块管理方式三</a></span></p></div><h1><a name='header-n2' class='md-header-anchor '></a>第一章 Maven简介</h1><h2><a name='header-n3' class='md-header-anchor '></a>1.1 软件开发中的阶段</h2><p>需要分析： 分析项目具体完成的功能，有什么要求， 具体怎么实现。</p><p>设计阶段：根据分析的结果， 设计项目的使用什么技术， 解决难点。</p><p>开发阶段：编码实现功能。 编译代码。自我测试</p><p>测试阶段：专业的测试人员，测整个项目的功能十分符合设计要求。出一个测试报告。</p><p>项目的打包，发布阶段： 给用户安装项目</p><p>&nbsp;</p><h2><a name='header-n10' class='md-header-anchor '></a>1.2 Maven能做什么</h2><p>1）项目的自动构建，帮助开发人员做项目代码的编译，测试， 打包，安装，部署等工作。</p><p>2）管理依赖（管理项目中使用的各种jar包）。</p><p>      依赖：项目中需要使用的其他资源，  常见的是jar 。 比如项目要使用mysql驱动。我们就说项目依赖mysql驱动。</p><p>&nbsp;</p><h2><a name='header-n15' class='md-header-anchor '></a>1.3 没有使用maven怎么管理依赖</h2><p>管理jar ，需要从网络中单独下载某个jar </p><p>需要选择正确版本</p><p>手工处理jar文件之间的依赖。 a.jar里面要使用b.jar的类。</p><p>&nbsp;</p><h2><a name='header-n20' class='md-header-anchor '></a>1.4 什么是maven</h2><p>maven是apache基金会的开源项目，使用java语法开发。 Maven 这个单词的本意是：专家，内行。读音是[&#39;meɪv(ə)n]  或  [&#39;mevn]。</p><p>maven是项目的自动化构建工具。 管理项目的依赖。</p><p>&nbsp;</p><h2><a name='header-n24' class='md-header-anchor '></a>1.5 maven中的概念</h2><p>①POM</p><p>②约定的目录结构</p><p>③坐标</p><p>④依赖管理</p><p>⑤仓库管理</p><p>⑥生命周期</p><p>⑦插件和目标</p><p>⑧继承</p><p>⑨聚合</p><p>&nbsp;</p><h2><a name='header-n35' class='md-header-anchor '></a>1.6 maven工具的获取和安装</h2><p>地址： <a href='http://maven.apache.org/' target='_blank' class='url'>http://maven.apache.org/</a>  从中下载  .zip文件。 使用的 apache-maven-3.3.9-bin.zip</p><p>&nbsp;</p><p>安装：</p><ol start='' ><li><p>确定JAVA_HOME 指定jdk的安装目录， 如果没有JAVA_HOME， 需要在windows的环境变量中创建JAVA_HOME, 它的值是jdk的安装目录</p></li><li><p>解压缩  apache-maven-3.3.9-bin.zip ，把解压后的文件放到一个目录中。 </p><p>目录的路径不要有中文， 不要有空格。</p></li><li><p>把maven安装目录中下的bin的路径添加到path中</p></li><li><p>测试maven的安装。 在命令行执行 mvn     -v</p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="xml"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="xml"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 8.16406px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">C:\Users\NING MEI&gt;mvn -v</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">Apache Maven 3.3.9 (bb52d8502b132ec0a5a3f4c09453c07478323dc5; 2015-11-11T00:41:47+08:00)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">Maven home: D:\tools\apache-maven-3.3.9\bin\..</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">Java version: 1.8.0_101, vendor: Oracle Corporation</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">Java home: C:\Program Files\Java\jdk1.8.0_101\jre</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">Default locale: zh_CN, platform encoding: GBK</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">OS name: "windows 10", version: "10.0", arch: "amd64", family: "dos"</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 360px;"></div><div class="CodeMirror-gutters" style="display: none; height: 360px;"></div></div></div></pre><p>&nbsp;</p></li></ol><p>maven解压后的目录结构</p><p><img src='https://img-blog.csdnimg.cn/aa613b0175b148298765891cce70ce27.png' alt='在这里插入图片描述' referrerPolicy='no-referrer' /><span>	</span></p><p>&nbsp;</p><p>maven的其他安装方式：</p><ol start='' ><li><p>确定JAVA_HOME是否有效</p></li><li><p>在环境变量中，创建一个叫做M2_HOME (或者MAVEN_HOME) ，它的值是maven的安装目录</p><p>M2_HOME=D:\tools\apache-maven-3.3.9</p></li><li><p>在path环境变量中，加入 %M2_HOME%\bin    </p></li><li><p>测试maven的安装，在命令行执行 mvn  -v</p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="bash"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="bash"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 8.16406px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">C:\Users\NING MEI&gt;mvn <span class="cm-attribute">-v</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">Apache Maven <span class="cm-number">3</span>.3.9 (bb52d8502b132ec0a5a3f4c09453c07478323dc5; <span class="cm-number">2015</span><span class="cm-attribute">-11-11T00</span>:41:47<span class="cm-operator">+</span><span class="cm-number">08</span>:00)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">Maven home: D:\tools\apache-maven-3.3.9\b<span class="cm-keyword">in</span>\..</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">Java version: <span class="cm-number">1</span>.8.0_101, vendor: Oracle Corporation</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">Java home: C:\Program Files\Java\jdk1.8.0_101\jre</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">Default locale: zh_CN, platform encoding: GBK</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">OS name: <span class="cm-string">"windows 10"</span>, version: <span class="cm-string">"10.0"</span>, arch: <span class="cm-string">"amd64"</span>, family: <span class="cm-string">"dos"</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 360px;"></div><div class="CodeMirror-gutters" style="display: none; height: 360px;"></div></div></div></pre></li></ol><h2><a name='header-n66' class='md-header-anchor '></a>1.7 第一个maven工程</h2><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="xml"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="xml"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 8.16406px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">按照如下步骤，实现第一个 maven 项目，以maven推荐的约定方式创建目录，类文件：</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">1.某个目录中创建文件夹HelloWorld</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">2.在HelloWorld中创建子目录src</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">3.拷贝pom.xml到HelloWorld目录和src是同级放置的。</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">4.进入src目录，创建main，test目录</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">5.进入main目录，创建java，resources目录。</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">6.进入java目录，创建目录com/javacode/</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">6.在 com/javacode/目录下创建HelloMaven.java文件 </span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">7.进入到Hello目录执行mvn compile</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">8.进入到 target/classes目录执行java com.javacode.HelloMaven</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 315px;"></div><div class="CodeMirror-gutters" style="display: none; height: 315px;"></div></div></div></pre><p>&nbsp;</p><h1><a name='header-n69' class='md-header-anchor '></a>第二章 Maven的核心概念</h1><h2><a name='header-n70' class='md-header-anchor '></a>2.1 约定的目录结构</h2><p>一个maven项目就是一个文件夹，比如项目：HelloWorld：</p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="xml"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="xml"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 8.16406px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">HelloWorld：</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;  \src</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  \main<span class="cm-tab" role="presentation" cm-text="	"> </span><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-tab" role="presentation" cm-text="	">    </span>  主程序目录（完成项目功能的代码和配置文件）</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; \java &nbsp; &nbsp; &nbsp; &nbsp;  源代码（包和相关的类定义）</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; \resources<span class="cm-tab" role="presentation" cm-text="	">   </span>  配置文件</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  \test &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 放置测试程序代码的（开发人员自己写的测试代码）</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; \java &nbsp; &nbsp; &nbsp; &nbsp;  测试代码（junit）</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; \resources &nbsp; &nbsp; 测试程序需要的配置文件</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;  \pom.xml &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  maven的配置文件(核心文件)</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 360px;"></div><div class="CodeMirror-gutters" style="display: none; height: 360px;"></div></div></div></pre><p>maven的使用方式：</p><p>1）maven可以独立使用： 创建项目，编译代码，测试程序，打包，部署等等。</p><p>2）maven和idea一起使用：通过idea借助maven，实现编码，测试，打包等等。</p><h2><a name='header-n76' class='md-header-anchor '></a>2.2 POM </h2><p>POM： Project Object Model 项目对象模型， maven把项目当做模型处理。 操作这个模型就是操作项目。</p><p>maven通过<strong>pom.xml</strong>文件实现项目的构建和依赖的管理。</p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="xml" style="break-inside: unset;"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="xml"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 8.16406px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><span><span>​</span>x</span></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-meta">&lt;?xml</span> <span class="cm-meta">version="1.0" encoding="UTF-8"?&gt;</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">&lt;!-- project是根标签， 后面的是约束文件 --&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">project</span> <span class="cm-attribute">xmlns</span>=<span class="cm-string">"http://maven.apache.org/POM/4.0.0"</span> <span class="cm-attribute">xmlns:xsi</span>=<span class="cm-string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-attribute">xsi:schemaLocation</span>=<span class="cm-string">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="cm-tag cm-bracket">&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-comment">&lt;!-- pom模型的版本， 就是4.0.0 --&gt;</span> &nbsp;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">modelVersion</span><span class="cm-tag cm-bracket">&gt;</span>4.0.0<span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">modelVersion</span><span class="cm-tag cm-bracket">&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-comment">&lt;!-- 坐标 --&gt;</span> &nbsp;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">groupId</span><span class="cm-tag cm-bracket">&gt;</span>com.xxx.xxxx<span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">groupId</span><span class="cm-tag cm-bracket">&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">artifactId</span><span class="cm-tag cm-bracket">&gt;</span>project_name<span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">artifactId</span><span class="cm-tag cm-bracket">&gt;&lt;/</span><span class="cm-tag cm-error">artifactId</span><span class="cm-tag cm-bracket cm-error">&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">version</span><span class="cm-tag cm-bracket">&gt;</span>1.0-SNAPSHOT<span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">version</span><span class="cm-tag cm-bracket">&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">properties</span><span class="cm-tag cm-bracket">&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; <span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">java.version</span><span class="cm-tag cm-bracket">&gt;</span>1.8<span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">java.version</span><span class="cm-tag cm-bracket">&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; <span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">maven.compiler.source</span><span class="cm-tag cm-bracket">&gt;</span>1.8<span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">maven.compiler.source</span><span class="cm-tag cm-bracket">&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; <span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">maven.compiler.target</span><span class="cm-tag cm-bracket">&gt;</span>1.8<span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">maven.compiler.target</span><span class="cm-tag cm-bracket">&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">properties</span><span class="cm-tag cm-bracket">&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag cm-error">project</span><span class="cm-tag cm-bracket cm-error">&gt;</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 765px;"></div><div class="CodeMirror-gutters" style="display: none; height: 765px;"></div></div></div></pre><h2><a name='header-n80' class='md-header-anchor '></a>2.3 坐标</h2><p>坐标组成是 <strong>groupid</strong>, <strong>artifiactId</strong>, <strong>version</strong>。·</p><p>坐标作用：确定资源的，是资源的唯一标识。 maven中，每个资源都是坐标。 坐标值是唯一的。简称gav。</p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="xml"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="xml"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 7.99478px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">groupId</span><span class="cm-tag cm-bracket">&gt;</span>com.xxx.xxxx<span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">groupId</span><span class="cm-tag cm-bracket">&gt;</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">artifactId</span><span class="cm-tag cm-bracket">&gt;</span>project_name<span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">artifactId</span><span class="cm-tag cm-bracket">&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">version</span><span class="cm-tag cm-bracket">&gt;</span>1.0-SNAPSHOT<span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">version</span><span class="cm-tag cm-bracket">&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">packaging</span><span class="cm-tag cm-bracket">&gt;</span>jar<span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">packaging</span><span class="cm-tag cm-bracket">&gt;</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 90px;"></div><div class="CodeMirror-gutters" style="display: none; height: 90px;"></div></div></div></pre><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="xml"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="xml"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 8.16406px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">&lt;!--groupId: 组织名称，代码。 公司，团体或者单位的标识。 这个值常使用的公司域名的倒写。--&gt;</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">&lt;!--artifactId:项目名称， 如果groupId中有项目， 此时当前的值就是子项目名。 项目名称是唯一的。&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">&lt;!--version：版本， 项目的版本号， 使用的数字。 三位组成。 例如 主版本号.次版本号.小版本号， 例如： 5.2.5。注意：版本号中有-SNAPSHOT， 表示快照，不是稳定的版本。--&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">&lt;!--packaging 项目打包的类型， 有jar ，war， ear， pom等等 默认是jar&gt;</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 270px;"></div><div class="CodeMirror-gutters" style="display: none; height: 270px;"></div></div></div></pre><p>项目使用gav：</p><p>1.每个maven项目，都需要有一个自己的gav</p><p>2.管理依赖，需要使用其他的jar ，也需要使用gav作为标识。</p><p><strong>搜索坐标的地址： <a href='https://mvnrepository.com/' target='_blank' class='url'>https://mvnrepository.com/</a></strong></p><h2><a name='header-n89' class='md-header-anchor '></a>2.4 依赖-dependency</h2><p>依赖：项目中要使用的其他资源（jar）。  </p><p>需要使用maven表示依赖，管理依赖。 通过使用dependency和gav一起完成依赖的使用。</p><p>需要在pom.xml文件中，使用dependencies 和dependency， 还有gav完成依赖的说明。</p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="xml" style="break-inside: unset;"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="xml"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 7.99478px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">dependencies</span><span class="cm-tag cm-bracket">&gt;</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-comment">&lt;!-- 日志 --&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">dependency</span><span class="cm-tag cm-bracket">&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">groupId</span><span class="cm-tag cm-bracket">&gt;</span>log4j<span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">groupId</span><span class="cm-tag cm-bracket">&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">artifactId</span><span class="cm-tag cm-bracket">&gt;</span>log4j<span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">artifactId</span><span class="cm-tag cm-bracket">&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">version</span><span class="cm-tag cm-bracket">&gt;</span>1.2.17<span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">version</span><span class="cm-tag cm-bracket">&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">dependency</span><span class="cm-tag cm-bracket">&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-comment">&lt;!-- mysql驱动 --&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; <span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">dependency</span><span class="cm-tag cm-bracket">&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">groupId</span><span class="cm-tag cm-bracket">&gt;</span>mysql<span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">groupId</span><span class="cm-tag cm-bracket">&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">artifactId</span><span class="cm-tag cm-bracket">&gt;</span>mysql-connector-java<span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">artifactId</span><span class="cm-tag cm-bracket">&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">version</span><span class="cm-tag cm-bracket">&gt;</span>5.1.16<span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">version</span><span class="cm-tag cm-bracket">&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">dependency</span><span class="cm-tag cm-bracket">&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">dependencies</span><span class="cm-tag cm-bracket">&gt;</span> </span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">&lt;!--maven使用gav作为标识，从互联网下载依赖的jar。下载到你的本机上。由maven管理项目使用的这些jar&gt;</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 495px;"></div><div class="CodeMirror-gutters" style="display: none; height: 495px;"></div></div></div></pre><h2><a name='header-n94' class='md-header-anchor '></a>2.5 仓库</h2><p>仓库是存东西的，maven的仓库存放的是：</p><ol start='' ><li>maven工具自己的jar包。</li><li>第三方的其他jar包。</li><li>自己写的程序，可以打包为jar ， 存放到仓库。</li></ol><p>仓库的分类：</p><ol start='' ><li><p>本地仓库（本机仓库）： 位于你自己的计算机， 它是磁盘中的某个目录。</p><p>本地仓库：默认路径，是你登录操作系统的账号的目录中/.m2/repository</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="xml" contenteditable="false" cid="n108" mdtype="fences">C:\Users\NING MEI\.m2\repository
+</pre><p>修改本地仓库的位置：修改maven工具的配置文件（maven的安装路径\conf\setting.xml）</p><p>步骤：</p><p>     1）创建一个目录，作为仓库使用。  目录不要有中文和空格。 目录不要太深。</p><p><span>		</span>   例如： D:\repository</p><p>     2）修改setting.xml文件，指定 D:\repository这个目录</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="xml" contenteditable="false" cid="n114" mdtype="fences">    &lt;localRepository&gt;D:/repository&lt;/localRepository&gt;
+</pre><p>    3) 把仓库的资源拷贝到 D:/repository下。</p></li><li><p>远程仓库： 需要通过联网访问的</p><p>1）中央仓库： 一个ftp服务器， 存放了所有的资源。 </p><p>2）中央仓库的镜像： 就是中央仓库的拷贝。</p><p>3）私服：在局域网中使用的。 私服就是自己的仓库服务器。 在公司内部使用的。</p></li></ol><p>maven使用仓库： maven自动使用仓库， 当项目启动后， 执行了maven的命令， maven首先访问的是本地仓库， 从仓库中获取所需的jar， 如果本地仓库没有 ，需要访问私服或者中央仓库或者镜像。</p><p><img src='https://img-blog.csdnimg.cn/5418c562743f4302a563f0e7390bb20e.png' alt='在这里插入图片描述' referrerPolicy='no-referrer' /></p><h2><a name='header-n123' class='md-header-anchor '></a>2.6 继承</h2><p>parent：在Maven中，如果多个模块都需要声明相同的配置，例如：groupId、version、有相同的依赖或
+者相同的组件配置等，也有类似 Java 的继承机制，用parent声明要继承的父工程的pom配置。</p><h2><a name='header-n125' class='md-header-anchor '></a>2.7 聚合</h2><p>modules：在Maven的多模块开发中，为了统一构建整个项目的所有模块，可以提供一个额外的模块，该模块打包方式为pom，并且在其中使用modules聚合的其它模块，这样通过本模块就可以一键自动识别模块间的依赖关系来构建所有模块，叫Maven的聚合。</p><h2><a name='header-n127' class='md-header-anchor '></a>2.8 maven的生命周期，插件和命令</h2><p>maven的生命周期： 项目构建的各个阶段，包括：清理， 编译， 测试，报告，打包，安装，部署。</p><p>插件：要完成构建项目的各个阶段，要使用maven的命令， 执行命令的功能是通过插件完成的。插件就是jar包，一些类。</p><p>命令： 执行maven功能是 由命令发出的。 比如：mvn compile。</p><p>单元测试（junit）：</p><p>junit是一个单元测试的工具， 在java中经常使用。</p><p>单元：在java中指的是方法。  一个方法就是一个单元， 方法是测试的最小单位。</p><p>作用：使用junit去测试方法是否完成了要求。 开发人员自测。</p><p>&nbsp;</p><p>使用单元测试：</p><p>1）加入junit的依赖</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="xml" contenteditable="false" cid="n138" mdtype="fences">&lt;dependency&gt;
+    &lt;groupId&gt;junit&lt;/groupId&gt;
+    &lt;artifactId&gt;junit&lt;/artifactId&gt;
+    &lt;version&gt;4.12&lt;/version&gt;
+    &lt;scope&gt;test&lt;/scope&gt;
+&lt;/dependency&gt;
+</pre><p>2)在src/test/java目录中创建测试类文件。 写测试代码</p><p>   单元测试使用的建议：</p><p>    <span>	</span>1. 测试类的定义， 名称一般是Test+要测试的类名称</p><p>    <span>	</span>2. 测试类它的包名和要测试的类包名一样。</p><p>    <span>	</span>3. 在类中定义方法，要测试代码。</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="" contenteditable="false" cid="n144" mdtype="fences">  方法的定义：public方法，没有返回值，方法名称自定义（建议 Test+测试的方法名称），方法没有参数。
+</pre><ol start='4' ><li>在测试类中的方法，可以单独执行。 测试类也可以单独执行</li></ol><p><span>	</span>   5. 在方法的上面加入@Test</p><p>命令：</p><p>1） mvn clean：清理命令，作用删除以前生成的数据，删除target目录。插件： maven-clean-plugin， 版本：2.5。</p><p>2）mvn compile：编译命令，执行的代码编译， 把src/main/java目录中的java代码编译为class文件。 同时把class文件拷贝到 target/classes目录。这个目录classes是存放类文件的根目录（也叫做类路径，classpath）。编译代码的插件： maven-compiler-plugin，版本：3.1。资源插件：maven-resources-plugin，版本：2.6。作用是把src/main/resources目录中的文件拷贝target/classes目录中。</p><p>3）mvn test-compile：编译命令， 编译src/test/java目录中的源文件， 把生成的class拷贝到target/test-classes目录。同时把src/test/resources目录中的文件拷贝到 test-clasess目录。编译代码的插件： maven-compiler-plugin，版本：3.1。资源插件处理文件：maven-resources-plugin，版本：2.6 。</p><p>4）mvn test：测试命令，作用执行 test-classes目录的程序， 测试src/main/java目录中的主程序代码是否符合要求。插件： maven-surefire-plugin，版本：2.12.4。</p><p>5）mvn package:打包，作用是把项目中的资源class文件和配置文件都放到一个压缩文件中， 默认压缩文件是jar类型的。web应用是war类型， 扩展是jar，war的。 插件：maven-jar-plugin，版本：2.4。执行打包处理。 生成一个jar扩展的文件， 放在target目录下。打包的文件包含的是 src/main目录中的所有的生成的class和配置文件和test无关。</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="" contenteditable="false" cid="n155" mdtype="fences">打包文件名： artifactId-version.packaging
+</pre><p>6）mvn install : 把生成的打包的文件，安装到maven仓库。插件：maven-install-plugin,版本：2.4 。 把生成的jar文件安装到本地仓库。 </p><p>查看仓库中的jar文件：</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="xml" contenteditable="false" cid="n158" mdtype="fences">groupId中的值，如果有 "." 前和后都是独立的文件夹。
+artifactId，独立的文件夹。
+version，独立的文件夹。
+</pre><h2><a name='header-n159' class='md-header-anchor '></a>2.9 自定义配置插件</h2><p>在pom.xml文件的build标签中。设置插件：</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="xml" contenteditable="false" cid="n161" mdtype="fences" style="break-inside: unset;">&lt;!-- 设置构建项目相关的内容 --&gt;
+&lt;build&gt;
+    
+  &lt;plugins&gt;
+      
+    &lt;!-- 设置插件 --&gt;
+	&lt;plugin&gt;
+		&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+		&lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
+		&lt;version&gt;3.8.1&lt;/version&gt;
+		&lt;configuration&gt;
+			&lt;source&gt;1.8&lt;/source&gt; &lt;!-- 指定编译代码的jdk版本 --&gt;
+			&lt;target&gt;1.8&lt;/target&gt; &lt;!-- 运行java程序使用的jdk版本--&gt;
+		&lt;/configuration&gt;
+	&lt;/plugin&gt;
+      
+  &lt;/plugins&gt;
+    
+&lt;/build&gt; 
+</pre><h1><a name='header-n162' class='md-header-anchor '></a>第三章 Maven和idea的集成</h1><h2><a name='header-n163' class='md-header-anchor '></a>3.1 idea中集成maven</h2><p>idea中有一个自带的maven。  我们要让idea使用自己安装的maven。</p><p>1) 选择File- Settings </p><p><img src='https://img-blog.csdnimg.cn/a527b9b2ee0b42bb9ca5d037cdebb51c.png' alt='请添加图片描述' referrerPolicy='no-referrer' /><span>	</span></p><p><img src='https://img-blog.csdnimg.cn/c5699865f6664902aa98a7683c3e838b.png' alt='请添加图片描述' referrerPolicy='no-referrer' /><span>	</span></p><p>设置项： -DarchetypeCatalog=internal</p><p>&nbsp;</p><p>2） File - Other Settings</p><p><img src='https://img-blog.csdnimg.cn/57d56363eb3d4c8181326bf5e3f598d2.png' alt='请添加图片描述' referrerPolicy='no-referrer' /></p><p>同上设置</p><p>&nbsp;</p><h2><a name='header-n174' class='md-header-anchor '></a>3.2 创建基于maven的普通java项目</h2><p><img src='https://img-blog.csdnimg.cn/d04142423061401bb0f6e3c25107ca45.png' alt='请添加图片描述' referrerPolicy='no-referrer' /><span>	</span></p><p>&nbsp;</p><h2><a name='header-n177' class='md-header-anchor '></a>3.3 创建web项目</h2><p><img src='https://img-blog.csdnimg.cn/77b047b2533746538fb2ac4ab51bdea1.png' alt='请添加图片描述' referrerPolicy='no-referrer' /><span>	</span></p><h2><a name='header-n179' class='md-header-anchor '></a>3.4 导入module到idea</h2><p>&nbsp;</p><p><img src='https://img-blog.csdnimg.cn/869fe694e64c46b1b1fdb338eed0d917.png' alt='请添加图片描述' referrerPolicy='no-referrer' /></p><p>&nbsp;</p><h1><a name='header-n183' class='md-header-anchor '></a>第四章 依赖管理</h1><p>依赖范围：使用scope表示依赖的范围。 </p><p>依赖范围表示：这个依赖（jar和里面类）在项目构建的那个阶段起作用。</p><p>依赖范围scope：</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="xml" contenteditable="false" cid="n187" mdtype="fences">compile：默认，参与构建项目的所有阶段。
+test：测试，在测试阶段使用，比如执行mvn test会使用junit。
+provided：提供者。项目在部署到服务器时，不需要提供这个依赖的jar，而是由服务器这个依赖的jar包。
+</pre><h1><a name='header-n188' class='md-header-anchor '></a>第五章 常用设置</h1><p>1) properties的配置</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="xml" contenteditable="false" cid="n190" mdtype="fences">&lt;properties&gt;
+	&lt;maven.compiler.source&gt;1.8&lt;/maven.compiler.source&gt;&lt;!--源码编译jdk版本--&gt;
+	&lt;maven.compiler.target&gt;1.8&lt;/maven.compiler.target&gt;&lt;!--运行代码的jdk版本--&gt;
+	&lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
+	&lt;!--构建使用的编码，避免中文乱码--&gt;
+	&lt;project.reporting.outputEncoding&gt;UTF-8&lt;/project.reporting.outputEncoding&gt;
+   	&lt;!--生成报告的编码--&gt;
+&lt;/properties&gt;
+</pre><p>2) 全局变量</p><p>在properties定义标签，这个标签就是一个变量， 标签的文本就是变量的值。 </p><p>使用全局变量表示 多个依赖使用的版本号。</p><p>使用步骤：</p><p><span>	</span>1. 在properties标签中，定义一个标签，指定版本的值。</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="xml" contenteditable="false" cid="n196" mdtype="fences">&lt;properties&gt;
+  	&lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
+  	&lt;maven.compiler.source&gt;1.8&lt;/maven.compiler.source&gt;
+  	&lt;maven.compiler.target&gt;1.8&lt;/maven.compiler.target&gt;
+  	&lt;!--自定义变量--&gt;
+  	&lt;spring.version&gt;5.2.5.RELEASE&lt;/spring.version&gt;
+  	&lt;junit.version&gt;4.11&lt;/junit.version&gt;
+&lt;/properties&gt;
+</pre><ol start='2' ><li>使用全局变量， 语法 ${变量名}</li></ol><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="xml" contenteditable="false" cid="n200" mdtype="fences">&lt;dependency&gt;
+  &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+  &lt;artifactId&gt;spring-core&lt;/artifactId&gt;
+  &lt;version&gt;${spring.version}&lt;/version&gt;
+&lt;/dependency&gt;
+
+&lt;dependency&gt;
+  &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+  &lt;artifactId&gt;spring-web&lt;/artifactId&gt;
+  &lt;version&gt;${spring.version}&lt;/version&gt;
+&lt;/dependency&gt;
+</pre><p>3) 使用资源插件</p><p>处理的配置文件的信息，maven默认处理配置文件。</p><p>①：maven会把src/main/resources目录中的文件，拷贝到target/classes目录下。</p><p>②：maven只处理src/main/java目录中的 .java文件，把这些java文件编译为class，拷贝到 target/classes目录中。 不处理其他文件。</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="xml" contenteditable="false" cid="n205" mdtype="fences" style="break-inside: unset;">&lt;build&gt;
+    
+  &lt;!--资源插件，告诉maven把 src/main/java目录中的指定扩展名的文件拷贝到 target/classes目录中。--&gt;
+  &lt;resources&gt;
+    
+      &lt;resource&gt;
+        
+        &lt;!--所在的目录--&gt;
+      	&lt;directory&gt;src/main/java&lt;/directory&gt;
+      	
+        &lt;includes&gt;
+      	
+            &lt;!--包括目录下的.properties,.xml文件都会扫描到--&gt;
+        	&lt;include&gt;**/*.properties&lt;/include&gt;
+        	&lt;include&gt;**/*.xml&lt;/include&gt;
+     	 
+        &lt;/includes&gt;
+        
+        &lt;!--filtering选项false不启用过滤器，*.property已经起到过滤的作用了。--&gt;
+      	&lt;filtering&gt;false&lt;/filtering&gt;
+          
+    &lt;/resource&gt;
+      
+  &lt;/resources&gt;
+    
+&lt;/build&gt;
+</pre><h1><a name='header-n206' class='md-header-anchor '></a>第六章 其他</h1><h2><a name='header-n207' class='md-header-anchor '></a>6.1 镜像</h2><p>在pom.xml中添加镜像：</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="xml" contenteditable="false" cid="n209" mdtype="fences">&lt;!-- 阿里云仓库 --&gt;
+&lt;mirror&gt;
+	&lt;id&gt;alimaven&lt;/id&gt;
+	&lt;mirrorOf&gt;central&lt;/mirrorOf&gt;
+	&lt;name&gt;aliyun maven&lt;/name&gt;
+	&lt;url&gt;http://maven.aliyun.com/nexus/content/repositories/central/&lt;/url&gt;
+&lt;/mirror&gt;
+</pre><p>&nbsp;</p><h1><a name='header-n211' class='md-header-anchor '></a>第七章 多模块管理</h1><p>子模块会无条件继承父工程的所有依赖。</p><p><strong>方式一：子模块与父工程在同级目录下：</strong></p><h2><a name='header-n214' class='md-header-anchor '></a>7.1 创建父工程</h2><ol start='' ><li>指定Parent为&lt; None &gt;，</li></ol><p><img src='https://img-blog.csdnimg.cn/17b8fd318b53452293faf41ae9a073b2.png' alt='在这里插入图片描述' referrerPolicy='no-referrer' /></p><ol start='2' ><li><p>删除src文件目录，</p></li><li><p>修改packaging标签：</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="xml" contenteditable="false" cid="n224" mdtype="fences">&lt;packaging&gt;pom&lt;/packaging&gt;
+</pre></li></ol><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="xml" contenteditable="false" cid="n225" mdtype="fences">&lt;!--packaging标签指定打包的方式，默认为jar--&gt;
+&lt;!--maven多模块管理，就是让子模块的pom继承父工程的pom--&gt;
+&lt;!--
+maven父工程必须遵循两点要求：
+  1.packaging标签必须设置为pom
+  2.必须删除src目录
+--&gt;
+</pre><h2><a name='header-n226' class='md-header-anchor '></a>7.2 创建子模块</h2><ol start='' ><li><p>创建时指定Parent，<img src='https://img-blog.csdnimg.cn/bdf253bc312d4e488b61b033e9ce3e74.png' alt='在这里插入图片描述' referrerPolicy='no-referrer' /></p></li><li><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="xml" contenteditable="false" cid="n231" mdtype="fences" style="break-inside: unset;">  &lt;!--指向父工程的gav坐标--&gt;
+  &lt;parent&gt;
+    &lt;groupId&gt;com.java&lt;/groupId&gt;
+    &lt;artifactId&gt;JavaProject1&lt;/artifactId&gt;
+    &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
+    &lt;!--相对路径--&gt;
+    &lt;relativePath&gt;../JavaProject1/pom.xml&lt;/relativePath&gt;
+  &lt;/parent&gt;
+  &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+
+  &lt;!--与父工程必须保持一致--&gt;
+  &lt;!--&lt;groupId&gt;org.java&lt;/groupId&gt;--&gt;
+  &lt;!--&lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;--&gt;
+  &lt;artifactId&gt;JavaProject2&lt;/artifactId&gt;
+  &lt;packaging&gt;jar&lt;/packaging&gt;
+</pre><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="xml" contenteditable="false" cid="n232" mdtype="fences">&lt;!--父工程：--&gt;
+  &lt;modules&gt;
+    &lt;module&gt;../JavaProject2&lt;/module&gt;
+  &lt;/modules&gt;
+</pre><p>也可以手动添加<code>&lt;parent&gt;&lt;/parent&gt;</code>将maven模块修改为子模块。</p></li></ol><h2><a name='header-n234' class='md-header-anchor '></a>7.3 修改子工程为父工程</h2><p>遵从父工程的规则即可：</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="xml" contenteditable="false" cid="n236" mdtype="fences">&lt;!--packaging标签指定打包的方式，默认为jar--&gt;
+&lt;!--maven多模块管理，就是让子模块的pom继承父工程的pom--&gt;
+&lt;!--
+maven父工程必须遵循两点要求：
+  1.packaging标签必须设置为pom
+  2.必须删除src目录
+--&gt;
+</pre><h2><a name='header-n237' class='md-header-anchor '></a>7.4 父工程加强管理子模块的所有依赖</h2><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="xml" contenteditable="false" cid="n238" mdtype="fences" style="break-inside: unset;">&lt;dependencyManagement&gt;
+    
+    &lt;dependencies&gt;
+
+        &lt;dependency&gt;
+            ...
+        &lt;/dependency&gt;
+
+        &lt;dependency&gt;
+            ...
+        &lt;/dependency&gt;
+
+        &lt;dependency&gt;
+            ...
+        &lt;/dependency&gt;
+        
+    &lt;/dependencies&gt;
+    
+&lt;/dependencyManagement&gt;
+</pre><h2><a name='header-n239' class='md-header-anchor '></a>7.5 子工程声明式继承父工程依赖</h2><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="xml" contenteditable="false" cid="n240" mdtype="fences">&lt;dependencies&gt;
+  &lt;!--声明式依赖--&gt;
+  &lt;!--子模块依赖的版本号继承子父模块依赖的版本号(前提是父模块有)--&gt;
+  &lt;!--子模块指定版本号后就不再继承父模块的--&gt;
+  &lt;dependency&gt;
+    &lt;groupId&gt;mysql&lt;/groupId&gt;
+    &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+  &lt;/dependency&gt;
+&lt;/dependencies&gt;
+</pre><h2><a name='header-n241' class='md-header-anchor '></a>7.6 父工程管理依赖的版本号</h2><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="xml" contenteditable="false" cid="n242" mdtype="fences">&lt;properties&gt;
+	&lt;!--自定义标签名称，项目名称+字段version，使用${}引用--&gt;
+    &lt;junit-version&gt;4.1.3&lt;/junit-version&gt;
+&lt;/properties&gt;
+</pre><h2><a name='header-n243' class='md-header-anchor '></a>7.7 多模块管理方式二</h2><p><strong>子模块在父工程的子目录下：</strong></p><ol start='' ><li><p>创建父工程，同上，</p></li><li><p>创建子模块，没有相对路径<code>&lt;relativePath&gt;&lt;/relativePath&gt;</code></p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="xml" contenteditable="false" cid="n250" mdtype="fences">  &lt;!--指向父工程的gav坐标--&gt;
+  &lt;parent&gt;
+    &lt;groupId&gt;com.java&lt;/groupId&gt;
+    &lt;artifactId&gt;JavaProject1&lt;/artifactId&gt;
+    &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
+  &lt;/parent&gt;
+  &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+
+  &lt;!--与父工程必须保持一致--&gt;
+  &lt;!--&lt;groupId&gt;org.java&lt;/groupId&gt;--&gt;
+  &lt;!--&lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;--&gt;
+  &lt;artifactId&gt;JavaProject2&lt;/artifactId&gt;
+  &lt;packaging&gt;jar&lt;/packaging&gt;
+</pre><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="xml" contenteditable="false" cid="n251" mdtype="fences">&lt;!--方式二中的父工程包含的子模块--&gt;
+  &lt;modules&gt;
+    &lt;module&gt;JavaProject2&lt;/module&gt;
+  &lt;/modules&gt;
+</pre><p>其余同方式一</p><h2><a name='header-n253' class='md-header-anchor '></a>7.8 子工程继承父工程的编译插件</h2></li></ol><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="xml" contenteditable="false" cid="n254" mdtype="fences">&lt;build&gt;
+    &lt;plugins&gt;
+        &lt;plugin&gt;
+            &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
+            &lt;version&gt;3.1&lt;/version&gt;
+            &lt;configuration&gt;
+                &lt;source&gt;1.8&lt;/source&gt;
+                &lt;target&gt;1.8&lt;/target&gt;
+            &lt;/configuration&gt;
+        &lt;/plugin&gt;
+    &lt;/plugins&gt;
+&lt;/build&gt;
+</pre><h2><a name='header-n255' class='md-header-anchor '></a>7.9 多模块管理方式三</h2><p><strong>方式一和方式二的混合使用...</strong></p><hr /><hr /><hr /><hr /><hr /><p><code>修改时间：2022-6-23 23:01:20</code></p></div>
+</body>
+</html>
